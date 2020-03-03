@@ -1,46 +1,47 @@
+let person = {
+    firstName:'Vivek',
+    lastName:'Tiwari',
+}
+
+let printPersion = function(expertIn, interests){
+    //console.log(this);
+    console.log(this.firstName, this.lastName, expertIn, interests);
+}
+
+//printPersion.call(person, "JS", "Front-End");
+//newPrint("Varanasi");
+
+//================================================
+
+Function.prototype.bind2 = function(...args){
+    let obj = args[0];
+    let params1 = args.slice(1);
+    let func = this;
+    return (...args2)=>{
+        func.apply(obj, [...params1, ...args2]);
+    }
+}
+
+newPrint = printPersion.bind2(person, "JS", "Front-End");
+//newPrint("Varanasi");
 
 
-// const getData = async (arg)=>{
-//     let res = await fetch("https://jsonplaceholder.typicode.com/todos/5");
-//     let json = await res.json();
-//     console.log(json);
-// };
 
-// const debounce = (fn, d)=>{
-//     let timeoutId;
-//     return function(){
-//         clearInterval(timeoutId);
-//         let args = arguments;
-//         let context = this;
-//         timeoutId = setTimeout(()=>{
-//             fn.apply(context,args)
-//         }, d);
-//     };
-// };
+Function.prototype.call2 = function(...args){
+    let obj = args[0];
+    let params = args.slice(1);
+    let func = this;
+    func.apply(obj, params);
+}
+
+//printPersion.call2(person, "JS", "Front-End");
 
 
-//const betterGetData = debounce(getData, 300);
+// Function.prototype.apply2 = function(...args){
+//     let obj = args[0];
+//     let params = args.slice(1)[0];
+//     let func = this;
+//     func.call(obj, params[0], params[1]); // :( how to do this
+// }
 
-
-let count=0;
-const getData = async (arg)=>{
-    count++
-    console.log(count);
-};
-
-const throtle = (fn, d)=>{
-    //let timeoutId;
-    let flag=true;
-    return function(){
-        //clearInterval(timeoutId);
-        let args = arguments;
-        let context = this;
-        if(flag){
-            fn.apply(context, args);
-            flag=false;
-            setTimeout(()=>{ flag = true; }, d);
-        }
-    };
-};
-
-const betterGetData = throtle(getData, 500);
+// printPersion.apply2(person, ["JS", "Front-End"]);
