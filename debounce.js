@@ -1,46 +1,37 @@
-
-
-// const getData = async (arg)=>{
-//     let res = await fetch("https://jsonplaceholder.typicode.com/todos/5");
-//     let json = await res.json();
-//     console.log(json);
+// const expensiveGetData = (param1, param2)=>{
+//     console.log(param1, param2);
 // };
 
-// const debounce = (fn, d)=>{
+// const debounse = (fn, delay)=>{
 //     let timeoutId;
-//     return function(){
-//         clearInterval(timeoutId);
-//         let args = arguments;
-//         let context = this;
-//         timeoutId = setTimeout(()=>{
-//             fn.apply(context,args)
-//         }, d);
+//     return function(...params){
+//         let obj = this;
+//         clearTimeout(timeoutId);
+//         timeoutId=setTimeout(
+//             ()=>{
+//                 fn.apply(obj, params) 
+//             }, delay)
 //     };
 // };
+// getData = debounse(expensiveGetData, 500);
 
 
-//const betterGetData = debounce(getData, 300);
+const expensiveGetData = (parms1, parms2)=>{
+    console.log(parms1, parms2)
+}
 
-
-let count=0;
-const getData = async (arg)=>{
-    count++
-    console.log(count);
-};
-
-const throtle = (fn, d)=>{
-    //let timeoutId;
+const throttle = (fn, delay)=>{
     let flag=true;
-    return function(){
-        //clearInterval(timeoutId);
-        let args = arguments;
-        let context = this;
+    return function(...parms){
+        let obj = this;
         if(flag){
-            fn.apply(context, args);
+            setTimeout(()=>{
+                fn.apply(obj, parms)
+                flag=true;
+            }, delay);
             flag=false;
-            setTimeout(()=>{ flag = true; }, d);
         }
-    };
+    }
 };
 
-const betterGetData = throtle(getData, 500);
+const getData = throttle(expensiveGetData, 500);
