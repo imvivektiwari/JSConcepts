@@ -1,6 +1,7 @@
 import Car from './Car';
 
 const ToyCar = function(name){
+    Car.call(this, 'small') // taking the reference and adding a property
     this.name=name;
 }
 

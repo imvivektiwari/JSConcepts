@@ -3,4 +3,4 @@ import Machine from './Prototype/functions/Machine';
 
 let legoCar = new ToyCar("Suzuki");
 console.dir(legoCar)
-console.dir(legoCar instanceof Machine)
+console.dir(legoCar instanceof Machine)    
