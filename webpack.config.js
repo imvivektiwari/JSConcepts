@@ -6,8 +6,7 @@ module.exports = {
     },
     output:{
         path:path.resolve(__dirname, 'build'),
-        filename:"js/[name].js",
-        publicPath:'/assets/'
+        filename:"js/[name].js"
     },
     devServer:{
         port:1234
