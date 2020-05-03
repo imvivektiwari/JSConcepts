@@ -15,5 +15,5 @@ const notify = () => {
             }
         });
     };
-    
 };
+notify();
